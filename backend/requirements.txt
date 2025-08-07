@@ -9,3 +9,12 @@ psycopg-binary==3.2.9
 python-decouple==3.8
 sqlparse==0.5.3
 typing_extensions==4.14.1
+
+# Celery and Redis dependencies
+celery[redis]==5.5.3
+redis==5.2.1
+django-celery-beat==2.8.0
+django-celery-results==2.5.0
+
+# PostGIS support
+psycopg2-binary==2.9.9
