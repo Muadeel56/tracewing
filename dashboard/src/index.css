@@ -1,1 +1,354 @@
 @import "tailwindcss";
+
+/* ===== DESIGN SYSTEM ===== */
+
+/* CSS Custom Properties for Theme Colors */
+@layer base {
+  :root {
+    /* Brand Colors - Blue Spectrum */
+    --color-primary-50: 239 246 255;
+    --color-primary-100: 219 234 254;
+    --color-primary-200: 191 219 254;
+    --color-primary-300: 147 197 253;
+    --color-primary-400: 96 165 250;
+    --color-primary-500: 59 130 246;
+    --color-primary-600: 37 99 235;
+    --color-primary-700: 29 78 216;
+    --color-primary-800: 30 64 175;
+    --color-primary-900: 30 58 138;
+    --color-primary-950: 23 37 84;
+
+    /* Secondary Colors */
+    --color-success-50: 240 253 244;
+    --color-success-100: 220 252 231;
+    --color-success-200: 187 247 208;
+    --color-success-300: 134 239 172;
+    --color-success-400: 74 222 128;
+    --color-success-500: 34 197 94;
+    --color-success-600: 22 163 74;
+    --color-success-700: 21 128 61;
+    --color-success-800: 22 101 52;
+    --color-success-900: 20 83 45;
+
+    --color-warning-50: 255 251 235;
+    --color-warning-100: 254 243 199;
+    --color-warning-200: 253 230 138;
+    --color-warning-300: 252 211 77;
+    --color-warning-400: 251 191 36;
+    --color-warning-500: 245 158 11;
+    --color-warning-600: 217 119 6;
+    --color-warning-700: 180 83 9;
+    --color-warning-800: 146 64 14;
+    --color-warning-900: 120 53 15;
+
+    --color-danger-50: 254 242 242;
+    --color-danger-100: 254 226 226;
+    --color-danger-200: 254 202 202;
+    --color-danger-300: 252 165 165;
+    --color-danger-400: 248 113 113;
+    --color-danger-500: 239 68 68;
+    --color-danger-600: 220 38 38;
+    --color-danger-700: 185 28 28;
+    --color-danger-800: 153 27 27;
+    --color-danger-900: 127 29 29;
+
+    /* Neutral Colors - Light Theme */
+    --color-neutral-50: 250 250 250;
+    --color-neutral-100: 245 245 245;
+    --color-neutral-200: 229 229 229;
+    --color-neutral-300: 212 212 212;
+    --color-neutral-400: 163 163 163;
+    --color-neutral-500: 115 115 115;
+    --color-neutral-600: 82 82 82;
+    --color-neutral-700: 64 64 64;
+    --color-neutral-800: 38 38 38;
+    --color-neutral-900: 23 23 23;
+    --color-neutral-950: 9 9 11;
+
+    /* Semantic Colors - Light Theme */
+    --color-background: var(--color-neutral-50);
+    --color-surface: 255 255 255;
+    --color-surface-secondary: var(--color-neutral-100);
+    --color-surface-tertiary: var(--color-neutral-200);
+    
+    --color-text-primary: var(--color-neutral-900);
+    --color-text-secondary: var(--color-neutral-700);
+    --color-text-tertiary: var(--color-neutral-500);
+    --color-text-inverse: 255 255 255;
+    
+    --color-border: var(--color-neutral-200);
+    --color-border-secondary: var(--color-neutral-300);
+    --color-border-focus: var(--color-primary-500);
+    
+    --color-shadow: 0 0 0;
+    --shadow-sm: 0 1px 2px 0 rgb(var(--color-shadow) / 0.05);
+    --shadow: 0 1px 3px 0 rgb(var(--color-shadow) / 0.1), 0 1px 2px -1px rgb(var(--color-shadow) / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(var(--color-shadow) / 0.1), 0 2px 4px -2px rgb(var(--color-shadow) / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(var(--color-shadow) / 0.1), 0 4px 6px -4px rgb(var(--color-shadow) / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(var(--color-shadow) / 0.1), 0 8px 10px -6px rgb(var(--color-shadow) / 0.1);
+  }
+
+  /* Dark Theme */
+  .dark {
+    --color-background: 9 9 11;
+    --color-surface: var(--color-neutral-900);
+    --color-surface-secondary: var(--color-neutral-800);
+    --color-surface-tertiary: var(--color-neutral-700);
+    
+    --color-text-primary: var(--color-neutral-50);
+    --color-text-secondary: var(--color-neutral-300);
+    --color-text-tertiary: var(--color-neutral-400);
+    --color-text-inverse: var(--color-neutral-900);
+    
+    --color-border: var(--color-neutral-700);
+    --color-border-secondary: var(--color-neutral-600);
+    --color-border-focus: var(--color-primary-400);
+    
+    --color-shadow: 0 0 0;
+  }
+
+  /* Typography System */
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', Menlo, monospace;
+    
+    /* Font Sizes */
+    --text-xs: 0.75rem;     /* 12px */
+    --text-sm: 0.875rem;    /* 14px */
+    --text-base: 1rem;      /* 16px */
+    --text-lg: 1.125rem;    /* 18px */
+    --text-xl: 1.25rem;     /* 20px */
+    --text-2xl: 1.5rem;     /* 24px */
+    --text-3xl: 1.875rem;   /* 30px */
+    --text-4xl: 2.25rem;    /* 36px */
+    --text-5xl: 3rem;       /* 48px */
+    --text-6xl: 3.75rem;    /* 60px */
+    
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+    
+    /* Font Weights */
+    --font-thin: 100;
+    --font-extralight: 200;
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+    --font-black: 900;
+    
+    /* Spacing System (based on 4px grid) */
+    --space-0: 0;
+    --space-px: 1px;
+    --space-0_5: 0.125rem;  /* 2px */
+    --space-1: 0.25rem;     /* 4px */
+    --space-1_5: 0.375rem;  /* 6px */
+    --space-2: 0.5rem;      /* 8px */
+    --space-2_5: 0.625rem;  /* 10px */
+    --space-3: 0.75rem;     /* 12px */
+    --space-3_5: 0.875rem;  /* 14px */
+    --space-4: 1rem;        /* 16px */
+    --space-5: 1.25rem;     /* 20px */
+    --space-6: 1.5rem;      /* 24px */
+    --space-7: 1.75rem;     /* 28px */
+    --space-8: 2rem;        /* 32px */
+    --space-9: 2.25rem;     /* 36px */
+    --space-10: 2.5rem;     /* 40px */
+    --space-11: 2.75rem;    /* 44px */
+    --space-12: 3rem;       /* 48px */
+    --space-14: 3.5rem;     /* 56px */
+    --space-16: 4rem;       /* 64px */
+    --space-20: 5rem;       /* 80px */
+    --space-24: 6rem;       /* 96px */
+    --space-28: 7rem;       /* 112px */
+    --space-32: 8rem;       /* 128px */
+    --space-36: 9rem;       /* 144px */
+    --space-40: 10rem;      /* 160px */
+    --space-44: 11rem;      /* 176px */
+    --space-48: 12rem;      /* 192px */
+    --space-52: 13rem;      /* 208px */
+    --space-56: 14rem;      /* 224px */
+    --space-60: 15rem;      /* 240px */
+    --space-64: 16rem;      /* 256px */
+    --space-72: 18rem;      /* 288px */
+    --space-80: 20rem;      /* 320px */
+    --space-96: 24rem;      /* 384px */
+    
+    /* Border Radius */
+    --radius-none: 0;
+    --radius-sm: 0.125rem;   /* 2px */
+    --radius: 0.25rem;       /* 4px */
+    --radius-md: 0.375rem;   /* 6px */
+    --radius-lg: 0.5rem;     /* 8px */
+    --radius-xl: 0.75rem;    /* 12px */
+    --radius-2xl: 1rem;      /* 16px */
+    --radius-3xl: 1.5rem;    /* 24px */
+    --radius-full: 9999px;
+  }
+
+  /* Base Styles */
+  body {
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-text-primary));
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+
+  /* Focus Styles for Accessibility */
+  *:focus {
+    outline: 2px solid rgb(var(--color-border-focus));
+    outline-offset: 2px;
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ===== COMPONENT UTILITIES ===== */
+
+@layer utilities {
+  /* Theme Utilities */
+  .bg-background { background-color: rgb(var(--color-background)); }
+  .bg-surface { background-color: rgb(var(--color-surface)); }
+  .bg-surface-secondary { background-color: rgb(var(--color-surface-secondary)); }
+  .bg-surface-tertiary { background-color: rgb(var(--color-surface-tertiary)); }
+  
+  .text-primary { color: rgb(var(--color-text-primary)); }
+  .text-secondary { color: rgb(var(--color-text-secondary)); }
+  .text-tertiary { color: rgb(var(--color-text-tertiary)); }
+  .text-inverse { color: rgb(var(--color-text-inverse)); }
+  
+  .border-default { border-color: rgb(var(--color-border)); }
+  .border-secondary { border-color: rgb(var(--color-border-secondary)); }
+  .border-focus { border-color: rgb(var(--color-border-focus)); }
+  
+  /* Brand Color Utilities */
+  .bg-primary { background-color: rgb(var(--color-primary-500)); }
+  .bg-primary-50 { background-color: rgb(var(--color-primary-50)); }
+  .bg-primary-100 { background-color: rgb(var(--color-primary-100)); }
+  .bg-primary-500 { background-color: rgb(var(--color-primary-500)); }
+  .bg-primary-600 { background-color: rgb(var(--color-primary-600)); }
+  .bg-primary-700 { background-color: rgb(var(--color-primary-700)); }
+  
+  .text-primary-500 { color: rgb(var(--color-primary-500)); }
+  .text-primary-600 { color: rgb(var(--color-primary-600)); }
+  .text-primary-700 { color: rgb(var(--color-primary-700)); }
+  
+  .border-primary { border-color: rgb(var(--color-primary-500)); }
+  .border-primary-200 { border-color: rgb(var(--color-primary-200)); }
+  .border-primary-300 { border-color: rgb(var(--color-primary-300)); }
+  
+  /* Interactive State Utilities */
+  .hover\:bg-primary-hover:hover { background-color: rgb(var(--color-primary-600)); }
+  .active\:bg-primary-active:active { background-color: rgb(var(--color-primary-700)); }
+  .hover\:bg-surface-hover:hover { background-color: rgb(var(--color-surface-secondary)); }
+  .hover\:bg-surface-secondary-hover:hover { background-color: rgb(var(--color-surface-tertiary)); }
+  .hover\:border-hover:hover { border-color: rgb(var(--color-border-secondary)); }
+  .hover\:text-hover:hover { color: rgb(var(--color-text-primary)); }
+  .focus\:ring-focus:focus { --tw-ring-color: rgb(var(--color-border-focus)); }
+  
+  /* Success Colors */
+  .bg-success { background-color: rgb(var(--color-success-500)); }
+  .bg-success-50 { background-color: rgb(var(--color-success-50)); }
+  .bg-success-100 { background-color: rgb(var(--color-success-100)); }
+  .text-success { color: rgb(var(--color-success-600)); }
+  .text-success-600 { color: rgb(var(--color-success-600)); }
+  .hover\:bg-success-hover:hover { background-color: rgb(var(--color-success-600)); }
+  .active\:bg-success-active:active { background-color: rgb(var(--color-success-700)); }
+  .focus\:ring-success:focus { --tw-ring-color: rgb(var(--color-success-500)); }
+  
+  /* Warning Colors */
+  .bg-warning { background-color: rgb(var(--color-warning-500)); }
+  .bg-warning-50 { background-color: rgb(var(--color-warning-50)); }
+  .bg-warning-100 { background-color: rgb(var(--color-warning-100)); }
+  .text-warning { color: rgb(var(--color-warning-600)); }
+  .text-warning-600 { color: rgb(var(--color-warning-600)); }
+  .hover\:bg-warning-hover:hover { background-color: rgb(var(--color-warning-600)); }
+  .active\:bg-warning-active:active { background-color: rgb(var(--color-warning-700)); }
+  .focus\:ring-warning:focus { --tw-ring-color: rgb(var(--color-warning-500)); }
+  
+  /* Danger Colors */
+  .bg-danger { background-color: rgb(var(--color-danger-500)); }
+  .bg-danger-50 { background-color: rgb(var(--color-danger-50)); }
+  .bg-danger-100 { background-color: rgb(var(--color-danger-100)); }
+  .text-danger { color: rgb(var(--color-danger-600)); }
+  .text-danger-600 { color: rgb(var(--color-danger-600)); }
+  .hover\:bg-danger-hover:hover { background-color: rgb(var(--color-danger-600)); }
+  .active\:bg-danger-active:active { background-color: rgb(var(--color-danger-700)); }
+  .focus\:ring-danger:focus { --tw-ring-color: rgb(var(--color-danger-500)); }
+  
+  /* Shadow Utilities */
+  .shadow-custom { box-shadow: var(--shadow); }
+  .shadow-custom-sm { box-shadow: var(--shadow-sm); }
+  .shadow-custom-md { box-shadow: var(--shadow-md); }
+  .shadow-custom-lg { box-shadow: var(--shadow-lg); }
+  .shadow-custom-xl { box-shadow: var(--shadow-xl); }
+  
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scaleIn {
+    from { 
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Print Utilities */
+  @media print {
+    .print-hidden { display: none !important; }
+    .print-visible { display: block !important; }
+    
+    * {
+      color: black !important;
+      background: white !important;
+      box-shadow: none !important;
+    }
+  }
+}
