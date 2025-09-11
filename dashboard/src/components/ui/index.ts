@@ -18,5 +18,14 @@ export type { ModalProps, ModalHeaderProps, ModalContentProps, ModalFooterProps 
 
 export { default as ThemeToggle } from './ThemeToggle'
 
+export { default as Spinner } from './Spinner'
+export type { SpinnerProps } from './Spinner'
+
+export { default as Textarea } from './Textarea'
+export type { TextareaProps } from './Textarea'
+
+export { default as Select } from './Select'
+export type { SelectProps, SelectOption } from './Select'
+
 // Usage example:
-// import { Button, Card, Input, Badge, Modal } from '../components/ui' 
+// import { Button, Card, Input, Badge, Modal, Spinner, Textarea, Select } from '../components/ui' 
