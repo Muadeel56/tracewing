@@ -1,0 +1,216 @@
+openapi: 3.0.3
+info:
+  title: TraceWing API
+  version: 1.0.0
+  description: Employee Management & Attendance Tracking System API
+paths:
+  /api/auth/register/:
+    post:
+      operationId: auth_register_create
+      description: Register a new user account with username, email, and password
+      summary: User Registration
+      tags:
+      - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistrationRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: User successfully created
+        '400':
+          description: Bad request - validation errors
+  /api/auth/login/:
+    post:
+      operationId: auth_login_create
+      description: Authenticate user and return access token
+      summary: User Login
+      tags:
+      - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          description: Login successful
+        '401':
+          description: Invalid credentials or account disabled
+  /api/auth/logout/:
+    post:
+      operationId: auth_logout_create
+      description: Logout user and invalidate access token
+      summary: User Logout
+      tags:
+      - Authentication
+      security:
+      - tokenAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          description: Logout successful
+  /api/auth/profile/:
+    get:
+      operationId: auth_profile_retrieve
+      description: Get current user profile information
+      summary: User Profile
+      tags:
+      - Authentication
+      security:
+      - tokenAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: User profile data
+        '401':
+          description: Authentication required
+  /api/employees/:
+    get:
+      operationId: employees_retrieve
+      description: Get a list of all employees in the system
+      summary: List Employees
+      tags:
+      - Employees
+      security:
+      - tokenAuth: []
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  employees:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        employee_id:
+                          type: string
+                        name:
+                          type: string
+                        department:
+                          type: string
+                        position:
+                          type: string
+                        status:
+                          type: string
+          description: ''
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+      required:
+      - date_joined
+      - id
+      - last_login
+      - username
+    UserLoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          writeOnly: true
+          minLength: 1
+      required:
+      - password
+      - username
+    UserRegistrationRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 1
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+          minLength: 1
+        password_confirm:
+          type: string
+          writeOnly: true
+          minLength: 1
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+      required:
+      - password
+      - password_confirm
+      - username
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
